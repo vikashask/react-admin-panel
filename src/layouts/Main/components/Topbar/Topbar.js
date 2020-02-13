@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link as RouterLink } from 'react-router-dom';
+import { Link as RouterLink, useHistory } from 'react-router-dom';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/styles';
@@ -17,6 +17,9 @@ const useStyles = makeStyles(theme => ({
   },
   signOutButton: {
     marginLeft: theme.spacing(1)
+  },
+  logo: {
+    color: 'white'
   }
 }));
 
@@ -25,12 +28,15 @@ const Topbar = props => {
 
   const classes = useStyles();
 
+  const history = useHistory();
+
   const [notifications] = useState([]);
 
   const logout = () => {
-    props.history.push('/');
-
+    // props.history.push('/');
+    history.push('/')
   }
+
   return (
     <AppBar
       {...rest}
@@ -38,10 +44,13 @@ const Topbar = props => {
     >
       <Toolbar>
         <RouterLink to="/">
-          <img
+          {/* <img
             alt="Logo"
             src="/images/logos/logo--white.svg"
-          />
+          /> */}
+          <b>
+            <p className={classes.logo}> Logo Here</p>
+          </b>
         </RouterLink>
         <div className={classes.flexGrow} />
         <Hidden mdDown>
@@ -58,7 +67,7 @@ const Topbar = props => {
             <IconButton
               className={classes.signOutButton}
               color="inherit"
-            // onClick={logout}
+              onClick={logout}
             >
               <InputIcon />
             </IconButton>
