@@ -36,8 +36,8 @@ const DomainsToolbar = props => {
   const history = useHistory();
   
   const addDomain = () => {
-    // props.history.push('/');
-    history.push('/')
+    props.history.push('/');
+    // history.push('/')
   }
 
   return (
